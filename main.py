@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+import os
 
 
 #Inicializa o webdriver com chrome
@@ -61,8 +62,11 @@ for novo_titulo in novos_resultados:
 
 titulos = list(set(titulos))
 
-for titulo in titulos:
-    print(titulo)
+caminho = os.path.join("results", "resultados.txt")
+
+with open(caminho, "w", encoding="utf-8") as arquivo:
+    for titulo in titulos:
+        arquivo.write(titulo + "\n")
 
 input("Pressione ENTER para fechar...")
 
